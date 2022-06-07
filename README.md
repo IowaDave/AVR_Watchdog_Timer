@@ -1,5 +1,5 @@
 # AVR_Watchdog_Timer
-Perhaps the most useful internal timer found in AVR-based microcontrollers and Arduino development boards.
+The Watchdog may be the most useful internal timer found in AVR-based microcontrollers and Arduino development boards.
 
 Why? Because it can wake the microcontroller (MCU) up from the deepest sleep modes. Also, it can help to rescue a system from errors that halt the progress of code execution. No other internal timer can deliver those two results. 
 
@@ -23,12 +23,12 @@ The most complete documentation for using the Watchdog Timer, including code exa
 ## The WDTON bit in the high fuse byte determines the default condition of the WD:
 
 * "Programmed" condition, the WDTON bit = 0:
-  * WD interrupt is not available.
   * WD is always on in System Reset mode, described below.
-  * User code can regulate the WD in this mode:
+  * User code can regulate the WD two ways in this mode:
     * determine the WD Counter overflow period by the choice of prescaler; and
     * reset the WD Counter to zero by issuing the WDR instruction; 
-  * however, user code cannot stop the WD.
+  * User code cannot stop the WD.
+  * WD interrupt is not available.
 * "Unprogrammed" condition, the WDTON bit = 1:
   * WD interrupt mode can be selected in User code.
   * WD can be stopped by User code. 
@@ -63,7 +63,7 @@ The WDE and WDIE bits in the Watchdog Timer Control and Status Register, WDTCSR,
 ## Regulate the length of time before the WD counter overflows by selecting a pre-scaler.
 Search for a table named something like, "Watchdog Timer Prescale Select", in the datasheet for the AVR part you are using. Most likely it will be found under the section that describes the WDTCSR register. 
 
-The table explains how to set the bits in WDTCSR that determine the choice of prescaler, and thus how long it takes the WD Counter to overflow. The time can be set to one of ten, different interval lengths, ranging from as short as 16 milliseconds to as long as 8 full seconds.
+The table explains how to set the bits in WDTCSR that determine the choice of prescaler, and thus how long it takes the WD Counter to overflow. The time can be set to different interval lengths, ranging from as short as 16 milliseconds to as long as 8 full seconds.
 
 ## Prevent WD from interrupting or resetting the MCU in either of two ways:
 * Way #1: stop the WD.
