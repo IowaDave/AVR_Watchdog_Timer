@@ -56,7 +56,7 @@ The WDE and WDIE bits in the register WDTCSR select one of several different WD 
   * **When**: In sequence:
     * initially, raise an interrupt upon WD counter overflow as in Mode 2
     * subsequently, reset the MCU upon the next WD counter overflow, as in Mode 1
-  * **Application**: The ISR could save relevant data, e.g., to EEPROM, or emit a signal before resetting the system.
+  * **Application**: The WD interrupt service routing (ISR) could save relevant data, e.g., to EEPROM, or emit a signal before the WD resets the system.
 
 ## Regulate the length of time before the WD counter overflows by selecting a pre-scaler.
 Search for a table named something like, "Watchdog Timer Prescale Select", in the datasheet for the AVR part you are using. Most likely it will be under the section that describes the WDTCSR register. The table explains how to set the bits in WDTCSR that determine the choice of prescaler, and thus how long it takes the WD Counter to overflow.
